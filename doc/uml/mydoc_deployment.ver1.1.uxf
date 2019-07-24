@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>150</x>
+      <y>198</y>
+      <w>90</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+Medical Kit</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>150</x>
+      <y>300</y>
+      <w>90</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+Android App</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>150</x>
+      <y>108</y>
+      <w>90</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+NUGU Speaker</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>420</x>
+      <y>72</y>
+      <w>354</w>
+      <h>414</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+SK NUGU platform</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>312</x>
+      <y>540</y>
+      <w>558</w>
+      <h>348</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+MyDocter.Server</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>492</x>
+      <y>132</y>
+      <w>198</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+의료 진단 Play 서비스 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>498</x>
+      <y>168</y>
+      <w>180</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+의료 진단
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>498</x>
+      <y>198</y>
+      <w>180</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+의료 검색
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>498</x>
+      <y>228</y>
+      <w>180</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+기록 관리
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>498</x>
+      <y>258</y>
+      <w>180</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+도움말 
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>294</x>
+      <y>204</y>
+      <w>66</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Node
+Router</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>234</x>
+      <y>210</y>
+      <w>72</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-
+WLAN
+</panel_attributes>
+    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>234</x>
+      <y>120</y>
+      <w>60</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0;80.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>354</x>
+      <y>210</y>
+      <w>78</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-
+TCP/IP
+</panel_attributes>
+    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>78</x>
+      <y>126</y>
+      <w>84</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=-
+Bluetooth
+</panel_attributes>
+    <additional_attributes>120.0;330.0;10.0;330.0;10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>78</x>
+      <y>216</y>
+      <w>84</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>138</x>
+      <y>72</y>
+      <w>114</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>Node :User</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>426</x>
+      <y>366</y>
+      <w>162</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dictionary&gt;&gt;
+Intent</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>432</x>
+      <y>402</y>
+      <w>66</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+의료 진단
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>510</x>
+      <y>402</y>
+      <w>66</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+의료 검색
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>432</x>
+      <y>438</y>
+      <w>66</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+기록 관리
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>510</x>
+      <y>438</y>
+      <w>66</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+도움말
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>684</x>
+      <y>402</y>
+      <w>66</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+의료 검색
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>600</x>
+      <y>366</y>
+      <w>162</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dictionary&gt;&gt;
+Action</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>606</x>
+      <y>402</y>
+      <w>66</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+의료 진단
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>606</x>
+      <y>438</y>
+      <w>66</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+기록 관리
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>684</x>
+      <y>438</y>
+      <w>66</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+도움말
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>294</y>
+      <w>90</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>130.0;10.0;130.0;70.0;10.0;70.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>582</x>
+      <y>330</y>
+      <w>96</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0;140.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>324</x>
+      <y>582</y>
+      <w>234</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+Medical Analysis</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>588</x>
+      <y>582</y>
+      <w>234</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+Imagel Analysis</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>336</x>
+      <y>618</y>
+      <w>210</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+데이터 수집기</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>336</x>
+      <y>648</y>
+      <w>210</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+도식화</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>336</x>
+      <y>678</y>
+      <w>210</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+의미 분출기</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>600</x>
+      <y>618</y>
+      <w>210</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+데이터 수집기</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>600</x>
+      <y>648</y>
+      <w>210</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+이미지 해석기</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>324</x>
+      <y>768</y>
+      <w>504</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt; Data base &gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>600</x>
+      <y>804</y>
+      <w>198</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+&lt;&lt;artifact&gt;&gt;
+Hand Image.jpg</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>342</x>
+      <y>804</y>
+      <w>198</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+&lt;&lt;artifact&gt;&gt;
+Medical Voltage position(x, y).json</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>438</x>
+      <y>708</y>
+      <w>18</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>702</x>
+      <y>678</y>
+      <w>18</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;210.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>666</x>
+      <y>174</y>
+      <w>258</w>
+      <h>456</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>340.0;740.0;410.0;740.0;410.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>666</x>
+      <y>204</y>
+      <w>258</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>410.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>84</x>
+      <y>672</y>
+      <w>222</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>bg=yellow
+1. Image Analysis
+(1) 데이터 수집기
+  Android App로부터 측정된 손목 이미지을 수집함.
+  
+(2) 이미지 분류기
+  손목 이미지를 분석하여 어떠한 동작인지 추측함.
+
+(3) 이미지 해석기
+  분류된 손목 이미지를 통하여 의료적 상태를 추측함.
+  
+
+  </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>84</x>
+      <y>558</y>
+      <w>222</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>bg=yellow
+1. Medical Analysis
+(1) 데이터 수집기
+  Medical Kit 로부터 측정된 전압 값을 수집함.
+  
+(2) 도식화
+  Mdedical data를 그래프화하여 출력함.
+  
+(3) 의미 검출기
+  전압 변화를 해석하여 유의미한 병명 분류를 시행함.
+  </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>480</y>
+      <w>84</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-
+HTTP/Restful API</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>966</x>
+      <y>540</y>
+      <w>312</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>Node : 서울 아산 병원</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>990</x>
+      <y>612</y>
+      <w>258</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+:Web</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1020</x>
+      <y>738</y>
+      <w>180</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+질병 조회
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1008</x>
+      <y>702</y>
+      <w>222</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+Component</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1020</x>
+      <y>780</y>
+      <w>180</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+신체 부위 조회
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>864</x>
+      <y>678</y>
+      <w>114</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-
+HTTP/ Crolling</panel_attributes>
+    <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>852</x>
+      <y>702</y>
+      <w>126</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+bg=green
+질병 정보.json</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
