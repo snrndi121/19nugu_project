@@ -4,7 +4,5 @@
 #Description_Rule
   - '(type)' + 'action_name'   
     `(ex). (Branch) MYDOC.ACTION.hello.world`   
-    
-#Action_Tree   
 
-#Action_List   
+#Action_Tree   
