@@ -47,8 +47,8 @@ const tb_body = "tb_bodypart_list";
 //2-1. health check
 //express_ref : http://expressjs.com/en/5x/api.html
 app.get('/health', function (req, res) {
-    //res.render('health')
-    res.sendStatus(200);// equivalent to res.status(200).send('OK')
+    // res.sendStatus(200);// equivalent to res.status(200).send('OK')
+    res.status(200).send('OK');
 })
 //2-2. 메인
 app.get('/', function (req, res) {
@@ -62,10 +62,6 @@ app.get('/searchAll', function (req, res) {
   ******* part4.서버-동작 선언 *******
   *
 */
-app.post('/health', function (req, res) {
-    console.log("\n>> API_healthy check from SK 누구 ##### ");
-    console.log(req.body);
-})
 //3-1. 액션_검색(API)
 /*
   * 손목 건초염이면 손이 아파?
@@ -74,34 +70,96 @@ app.post('/health', function (req, res) {
   * 질병 = {관련 신체 부위}
 */
 //크롤링 : http://www.amc.seoul.kr/asan/healthinfo/disease/diseaseSubmain.do#
-app.post('/searchAll', function (req, res) {
-    console.log("\n>> API_searchAll from SK 누구 ##### ");
-    console.log(req.header);
-    console.log(req.body);
-    console.log(req.body.action);
-    var nugu_version = '1.0';
-    // if (req.body != null)
-    //     var nugu_version = req.body.version;
-
-    var body = {
-        version : nugu_version,
-        resultCode : "정상",
-        output : {
-            disease : '건초염',
-            bodyparts : '손목',
-            resultcode : 'OK',
-            desc_pain : '성공하셨어요.'
+/*
+  Requeset Body
+{
+    "version": "2.0",
+    "action": {
+        "actionName": "{{string}}",
+        "parameters": {
+            KEY: {
+                "type": "{{string}}",
+                "value": VALUE
+            }
         }
-    };
-    //
-    res.json(body);
-});
+    },
+    "event": {
+        "type": "{{string}}"
+    },
+    "context": {
+        "session": {
+            "accessToken": "{{string}}"
+        },
+        "device": {
+            "type": "{{string}}",
+            "state": {
+                KEY: VALUE
+            }
+        },
+        "supportedInterfaces": {
+            "AudioPlayer": {
+                "playerActivity": "PLAYING",
+                "token": "string value",
+                "offsetInMilliseconds": 100000
+            }
+        },
+        "privatePlay" : { } // reserved
+    }
+}
+*/
+/*
+  * Action category
+  * 1. MYDOC.ACTION.answer.diagnosis
+      - MYDOC.ACTION.answer.diagnosis.all
+      - MYDOC.ACTION.answer.diagnosis.disease
+      - MYDOC.ACTION.answer.diagnosis.bodyparts
+      - MYDOC.ACTION.answer.diagnosis.default
+
+  * 2. MYDOC.ACTION.answer.search
+      - MYDOC.ACTION.answer.search.all
+      - MYDOC.ACTION.answer.search.disease
+      - MYDOC.ACTION.answer.search.bodyparts
+      - MYDOC.ACTION.answer.search.stretch
+      - MYDOC.ACTION.answer.search.taping
+      - MYDOC.ACTION.answer.search.default
+
+  * 3. MYDOC.ACTION.answer.manage
+      - MYDOC.ACTION.answer.mange.history
+*/
+//3.1.Main -> ok
+app.post('/', function (req, res) {
+  console.log("\n>> API_main from SK 누구 ##### ");
+  var action_name = req.body.action.actionName;
+  var nugu_version = req.body.version;
+  var action_params = req.body.action.parameters;
+  console.log(action_name);
+  console.log(nugu_version);
+  console.log(action_params);
+
+  //결과 코드 설정
+  //존재하는 액션이라면 && 액션 내 허용된 검색이라면
+  var mresultCode = 'OK';
+  var body = {
+      version : nugu_version,
+      resultCode : mresultCode,
+      output : {
+          bodyparts : '손목',
+          disease : '건초염',
+          resultCode : 'OK',
+          resultDesc : '손목 건초염에 걸리면 손목이 아플 수도 있어요.'
+      },
+      directives : []
+  };
+  //
+  // console.log(JSON.parse(body));
+  res.json(body);
+})
 /*
   *
-  ******* part3.서버-함수 선언 *******
+  ******* part4.서버-함수 선언 *******
   *
 */
-//3-1. 질병 검색
+//4-1. 질병 검색
 function searchDisease(_dname)
 {
     console.log(" > func_searchDisease + " + _dname);
