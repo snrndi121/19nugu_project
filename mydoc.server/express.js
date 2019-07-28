@@ -127,6 +127,7 @@ app.get('/searchAll', function (req, res) {
       - MYDOC.ACTION.answer.mange.history
 */
 //3.1.Main -> ok
+/*
 app.post('/', function (req, res) {
   console.log("\n>> API_main from SK 누구 ##### ");
   var action_name = req.body.action.actionName;
@@ -143,7 +144,7 @@ app.post('/', function (req, res) {
       version : nugu_version,
       resultCode : mresultCode,
       output : {
-          bodyparts : '손목',
+          bodyparts : '손목'
           disease : '건초염',
           resultCode : 'OK',
           resultDesc : '손목 건초염에 걸리면 손목이 아플 수도 있어요.'
@@ -152,6 +153,32 @@ app.post('/', function (req, res) {
   };
   //
   // console.log(JSON.parse(body));
+  res.json(body);
+})
+*/
+app.post('/', function (req, res) {
+  console.log("\n>> APi_main from SK gogo");
+  var action_name = req.body.action.actionName;
+  var nugu_version = req.body.version;
+  var action = req.body.action;
+  var action_params = req.body.action.parameters;
+  
+  //console.log(action_name);
+  //console.log(nugu_version);
+  console.log(action);
+  console.log(action_params);
+
+  var mresultCode = 'OK';
+  var body = {
+	version : nugu_version,
+	resultCode : mresultCode,
+	output : {
+		requestNum : 'hoho',//action_params.requestNum,
+		resultCode : mresultCode,
+		resultDesc : action_params.requestNum + "is Called"
+	},
+	directives : []
+  };
   res.json(body);
 })
 /*
