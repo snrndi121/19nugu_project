@@ -108,66 +108,23 @@ app.get('/searchAll', function (req, res) {
 }
 */
 /*
-  * Action category
-  * 1. MYDOC.ACTION.answer.diagnosis
-      - MYDOC.ACTION.answer.diagnosis.all
-      - MYDOC.ACTION.answer.diagnosis.disease
-      - MYDOC.ACTION.answer.diagnosis.bodyparts
-      - MYDOC.ACTION.answer.diagnosis.default
-
-  * 2. MYDOC.ACTION.answer.search
-      - MYDOC.ACTION.answer.search.all
-      - MYDOC.ACTION.answer.search.disease
-      - MYDOC.ACTION.answer.search.bodyparts
-      - MYDOC.ACTION.answer.search.stretch
-      - MYDOC.ACTION.answer.search.taping
-      - MYDOC.ACTION.answer.search.default
-
-  * 3. MYDOC.ACTION.answer.manage
-      - MYDOC.ACTION.answer.mange.history
+  *   < Action category >
+  *
+  * 1. MYDOC.INTENT.diagnosis -> 진단 해주기 (병명 + 신체부위, 병명, 신체부위)
+  * 2. MYDOC.INTENT.search -> 관련 질환 정보 알려주기 (병명 + 신체부위, 병명, 신체부위)
+  * 3. MYDOC.INTENT.history -> 환자 지난 검사 이력 보여주기(병명, 신체부위)
+  * 4. MYDOC.INTENT.prevent -> 신체부위별 스트레칭 및 테이핑 방법, 운동별 테이핑 방법
+  *
 */
 //3.1.Main -> ok
-/*
 app.post('/', function (req, res) {
-  console.log("\n>> API_main from SK 누구 ##### ");
-  var action_name = req.body.action.actionName;
-  var nugu_version = req.body.version;
-  var action_params = req.body.action.parameters;
-  console.log(action_name);
-  console.log(nugu_version);
-  console.log(action_params);
-
-  //결과 코드 설정
-  //존재하는 액션이라면 && 액션 내 허용된 검색이라면
-  var mresultCode = 'OK';
-  var body = {
-      version : nugu_version,
-      resultCode : mresultCode,
-      output : {
-          bodyparts : '손목'
-          disease : '건초염',
-          resultCode : 'OK',
-          resultDesc : '손목 건초염에 걸리면 손목이 아플 수도 있어요.'
-      },
-      directives : []
-  };
-  //
-  // console.log(JSON.parse(body));
-  res.json(body);
-})
-*/
-app.post('/', function (req, res) {
-  console.log("\n>> APi_main from SK gogo");
+  console.log("\n>> APi_main from SK main");
   var action_name = req.body.action.actionName;
   var nugu_version = req.body.version;
   var action = req.body.action;
   var action_params = req.body.action.parameters;
-  
-  //console.log(action_name);
-  //console.log(nugu_version);
-  console.log(action);
-  console.log(action_params);
 
+  console.log(action);
   var mresultCode = 'OK';
   var body = {
 	version : nugu_version,
@@ -178,6 +135,52 @@ app.post('/', function (req, res) {
 		resultDesc : action_params.requestNum + "is Called"
 	},
 	directives : []
+  };
+  res.json(body);
+})
+app.post('/MYDOC.INTENT.search', function (req, res){
+
+  console.log("\n>> APi_main from SK search");
+  var action_name = req.body.action.actionName;
+  var nugu_version = req.body.version;
+  var action = req.body.action;
+  var action_params = req.body.action.parameters;
+
+  console.log(action);
+  var mresultCode = 'OK';
+  var body = {
+  version : nugu_version,
+  resultCode : mresultCode,
+  output : {
+    search_disease : '손목 터널 증후군',//action_params.requestNum,
+    search_bodyparts : "손목",
+    search_whatpain : "부음",
+    search_resultCode : mresultCode,
+    search_resultDesc : action_params.requestNum + "is Called"
+  },
+  directives : []
+  };
+  res.json(body);
+})
+app.post('/MYDOC.INTENT.test', function (req, res){
+
+  console.log("\n>> APi_main from SK gogo");
+  var action_name = req.body.action.actionName;
+  var nugu_version = req.body.version;
+  var action = req.body.action;
+  var action_params = req.body.action.parameters;
+
+  console.log(action);
+  var mresultCode = 'OK';
+  var body = {
+  version : nugu_version,
+  resultCode : mresultCode,
+  output : {
+    requestNum : 'hoho',//action_params.requestNum,
+    resultCode : mresultCode,
+    resultDesc : action_params.requestNum + "is Called"
+  },
+  directives : []
   };
   res.json(body);
 })
