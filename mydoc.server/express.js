@@ -138,7 +138,7 @@ app.post('/', function (req, res) {
   };
   res.json(body);
 })
-app.post('/MYDOC.INTENT.search', function (req, res){
+app.post('/MYDOC.ACTION.search', function (req, res){
 
   console.log("\n>> APi_main from SK search");
   var action_name = req.body.action.actionName;
