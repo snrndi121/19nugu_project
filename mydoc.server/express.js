@@ -46,9 +46,9 @@ const tb_body = "tb_bodypart_list";
 */
 //2-1. health check
 //express_ref : http://expressjs.com/en/5x/api.html
-app.get('/health', function (req, res) {
-    // res.sendStatus(200);// equivalent to res.status(200).send('OK')
-    res.status(200).send('OK');
+app.get('/health', function (req, res)
+{
+    res.status(200).send('OK');// res.sendStatus(200);// equivalent to res.status(200).send('OK')
 })
 //2-2. 메인
 app.get('/', function (req, res) {
@@ -57,19 +57,6 @@ app.get('/', function (req, res) {
 app.get('/searchAll', function (req, res) {
     res.render('search')
 })
-/*
-  *
-  ******* part4.서버-동작 선언 *******
-  *
-*/
-//3-1. 액션_검색(API)
-/*
-  * 손목 건초염이면 손이 아파?
-  * 신체 리스트 = {bid, bname} : tb_bodypart_list
-  * 질병 리스트 = {did, bid, dname, dinfo} : tb_disease_list
-  * 질병 = {관련 신체 부위}
-*/
-//크롤링 : http://www.amc.seoul.kr/asan/healthinfo/disease/diseaseSubmain.do#
 /*
   Requeset Body
 {
@@ -110,37 +97,21 @@ app.get('/searchAll', function (req, res) {
 /*
   *   < Action category >
   *
-  * 1. MYDOC.INTENT.diagnosis -> 진단 해주기 (병명 + 신체부위, 병명, 신체부위)
-  * 2. MYDOC.INTENT.search -> 관련 질환 정보 알려주기 (병명 + 신체부위, 병명, 신체부위)
-  * 3. MYDOC.INTENT.history -> 환자 지난 검사 이력 보여주기(병명, 신체부위)
-  * 4. MYDOC.INTENT.prevent -> 신체부위별 스트레칭 및 테이핑 방법, 운동별 테이핑 방법
+  * 1. MYDOC.ACTION.diagnosis -> 진단 해주기 (병명 + 신체부위, 병명, 신체부위)
+  * 2. MYDOC.ACTION.search -> 관련 질환 정보 알려주기 (병명 + 신체부위, 병명, 신체부위)
+  * 3. MYDOC.ACTION.history -> 환자 지난 검사 이력 보여주기(병명, 신체부위)
+  * 4. MYDOC.ACTION.prevent -> 신체부위별 스트레칭 및 테이핑 방법, 운동별 테이핑 방법
   *
 */
-//3.1.Main -> ok
-app.post('/', function (req, res) {
-  console.log("\n>> APi_main from SK main");
-  var action_name = req.body.action.actionName;
-  var nugu_version = req.body.version;
-  var action = req.body.action;
-  var action_params = req.body.action.parameters;
-
-  console.log(action);
-  var mresultCode = 'OK';
-  var body = {
-	version : nugu_version,
-	resultCode : mresultCode,
-	output : {
-		requestNum : 'hoho',//action_params.requestNum,
-		resultCode : mresultCode,
-		resultDesc : action_params.requestNum + "is Called"
-	},
-	directives : []
-  };
-  res.json(body);
-})
-app.post('/MYDOC.ACTION.search', function (req, res){
-
-  console.log("\n>> APi_main from SK search");
+/*
+*
+******* part4.서버-동작 선언 *******
+*
+*/
+//3.1.의료 진단(Medical diagnosis)
+app.post('/MYDOC.ACTION.diagnosis', function (req, res)
+{
+  console.log("\n>> APi_main from SK diagnosis");
   var action_name = req.body.action.actionName;
   var nugu_version = req.body.version;
   var action = req.body.action;
@@ -162,7 +133,142 @@ app.post('/MYDOC.ACTION.search', function (req, res){
   };
   res.json(body);
 })
-app.post('/MYDOC.INTENT.test', function (req, res){
+/*
+  * params : search_disease, search_bodyparts, search_whatpain, search_query
+*/
+//3.2.의료 검색(Medical search)
+app.post('/MYDOC.ACTION.search', function (req, res)
+{
+  console.log("\n>> APi_main from SK search");
+  var mVersion = req.body.version;
+  var mAction = req.body.action;
+  var mParams = req.body.action.parameters;
+  console.log(mParams);
+
+  //searching
+  //쿼리 : 원인 || 증상 || 이름
+  //이름만 물으면 -> 신체부위쪽에서 물은 경우
+  //증상 -> 질환으로 물은 경우
+  //
+  //기본 : SELECT
+  var sql_query = 'SELECT';
+  //part1. define SQL query
+    //신체부위인 경우 = {대표 질환 + 이름 리스트, 이름 리스트, 대표 질환 in 증상 = request_증상;}
+    va req_query = mParams.search_query;
+    console.log(req_query);
+    //(1) 컬럼 조정
+    if (!req_query) {
+        if (req_query.VALUE == 'NAME') {
+            //대화 질환들의 이름 LIST
+            sql_query += ' `dname`';
+        } else if (req_query.VALUE == 'WHY') {
+            sql_query += ' `cause`';
+
+        } else {
+            //대표 질환 설명 (이름 + 원인 + 증상)
+            sql_query += ' `dname`, `cause`, `effect`';
+        }
+        if (!mParams.search_whatpain)
+          sql_query += ' `effect_type`';
+    }
+    sql_query += ' FROM `tb_disease_info` WHERE `target`=?;';
+    let mResultCode = 'OK';
+    let mResultDesc = '';
+    //(2) 필터링 = {고통 종류, 부위 종류
+    connection.query(sql_query, [mParams.search_bodyparts], function (err, results) {
+        if (err) { throw err;}
+        else {
+            //ifdef search_whatpain
+            if (!mParams.search_whatpain) {
+                var mPain = mParams.search_whatpain.value;
+                for (i = 0; results.length; ++i) {
+                    if (results[i].indexOf(mPain)) {
+                        mResultDesc +=
+                    }
+                }
+            } else {
+              //ifndef search_whatpain
+            }
+        }
+    })
+    if (!mParams.search_whatpain )
+
+    //질환명인 경우
+  //part2. execute SQL query
+  //return structure
+  /*
+    var sql_query = function() {
+        execute_query(sql);
+    }
+  */
+  var body = {
+      version : mVersion,
+      resultCode : mResultCode,
+      output : {
+        search_disease : '손목 터널 증후군',//action_params.requestNum,
+        search_bodyparts : "손목",
+        search_whatpain : "부음",
+        search_query :
+        search_resultCode : mResultCode,
+        search_resultDesc : action_params.requestNum + "is Called"
+      },
+      directives : []
+  };
+  res.json(body);
+})
+//3.3.의료 이력(Personal medical history)
+app.post('/MYDOC.ACTION.history', function (req, res)
+{
+  console.log("\n>> APi_main from SK history");
+  var action_name = req.body.action.actionName;
+  var nugu_version = req.body.version;
+  var action = req.body.action;
+  var action_params = req.body.action.parameters;
+
+  console.log(action);
+  var mresultCode = 'OK';
+  var body = {
+  version : nugu_version,
+  resultCode : mresultCode,
+  output : {
+    search_disease : '손목 터널 증후군',//action_params.requestNum,
+    search_bodyparts : "손목",
+    search_whatpain : "부음",
+    search_resultCode : mresultCode,
+    search_resultDesc : action_params.requestNum + "is Called"
+  },
+  directives : []
+  };
+  res.json(body);
+})
+//3.4.의료 예방(Stretching and taping)
+app.post('/MYDOC.ACTION.prevent', function (req, res)
+{
+  console.log("\n>> APi_main from SK prevent");
+  var action_name = req.body.action.actionName;
+  var nugu_version = req.body.version;
+  var action = req.body.action;
+  var action_params = req.body.action.parameters;
+
+  console.log(action);
+  var mresultCode = 'OK';
+  var body = {
+  version : nugu_version,
+  resultCode : mresultCode,
+  output : {
+    search_disease : '손목 터널 증후군',//action_params.requestNum,
+    search_bodyparts : "손목",
+    search_whatpain : "부음",
+    search_resultCode : mresultCode,
+    search_resultDesc : action_params.requestNum + "is Called"
+  },
+  directives : []
+  };
+  res.json(body);
+})
+//3.$.테스트(for test)
+app.post('/MYDOC.INTENT.test', function (req, res)
+{
 
   console.log("\n>> APi_main from SK gogo");
   var action_name = req.body.action.actionName;
@@ -184,6 +290,7 @@ app.post('/MYDOC.INTENT.test', function (req, res){
   };
   res.json(body);
 })
+
 /*
   *
   ******* part4.서버-함수 선언 *******
